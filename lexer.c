@@ -59,6 +59,27 @@ Token nextToken(Lexer *lexer){
   if(c == '(') { lexer->position++; return makeToken(open, "("); }
   if(c == ')') { lexer->position++; return makeToken(close, ")"); }
 
+  
+  if(c == '@' && peekNext(lexer) == '@'){
+    while(peekCurr(lexer) != '\n' && peekCurr(lexer) != '\0'){
+      advanceChar(lexer);
+    }
+
+    return nextToken(lexer);
+  }
+
+  if(c == '@' && peekNext(lexer) == '*'){
+    while((peekCurr(lexer) != '*' || peekNext(lexer) != '@') && peekCurr(lexer) != '\0'){
+      advanceChar(lexer);
+    }
+
+    advanceChar(lexer);
+    advanceChar(lexer);
+
+    return nextToken(lexer);
+  }
+
+
   if(isdigit(c)){
     int startPos = lexer->position;
 

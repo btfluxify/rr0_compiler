@@ -1,3 +1,9 @@
-i8 RETURN_CODE = 0; comment look its a 8 bit number!;
-i32 u = 123; comment look its a number!;
-return RETURN_CODE;
+comment THIS IS A COMMENT;
+@@ this is also a comment;
+@*
+This is a multi
+-line
+comment
+*@
+
+return 0;
